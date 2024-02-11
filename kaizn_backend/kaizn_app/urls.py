@@ -11,7 +11,6 @@ urlpatterns = [
     path('login/', user_login, name='login'),
     path('item_dashboard/', item_dashboard, name='item_dashboard'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('get_item_inventory/', get_item_inventory, name='get_item_inventory'),
-    re_path(r'^.*$', RedirectView.as_view(url=reverse_lazy('item_dashboard')), name='login'),
+    path('get_item_inventory/', get_item_inventory, name='get_item_inventory')
     # Add other URL patterns as needed
 ]
