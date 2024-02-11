@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  # MySQL database service
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: kaizn_db
+
+  # Django web service
+  web:
+    build: .
+    command: bash -c "./wait-for-db.sh db && python kaizn_backend/manage.py migrate && python kaizn_backend/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
